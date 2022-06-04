@@ -106,9 +106,23 @@ async def id(_,query):
     message = query.message
     await query.answer(f"🏖 You Id 🏖")
     await query.message.delete()
+    caption = """
+✍️ User Info ✍️
+
+◇───────────────◇
+
+🚀 ** You Id ** ➳ `{query.from_user.id}`
+
+🌺 **You Name** : #press Button(my name)
+
+🌿 **My Picture ** : #press Button(my picture)
+
+🤞🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**
+
+◇───────────────◇️  """
     text = query.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    s = await query.message.reply_photo(photo,
+    await query.message.reply_photo(photo, caption,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -124,7 +138,6 @@ async def id(_,query):
             ]
           )
     )
-    await query.s.edit(CAPTION)
     
 
 
