@@ -1,5 +1,6 @@
 pyrogram==1.4.12
 tgcrypto
+telethon==1.17
 requests
 result
 aiohttp
