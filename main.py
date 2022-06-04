@@ -1,10 +1,6 @@
 from pyrogram import Client, filters
 import random
-from typing import Union
 from config import Config
-from logo import generate_logo
-from logo import get_wallpapers, get_unsplash
-from pyrogram.types import *
 import result
 from pyrogram.types import InputMediaPhoto, User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Chat
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, FloodWait
@@ -111,7 +107,7 @@ async def id(_,query):
     await query.answer(f"🏖 You Id 🏖")
     text = query.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply_photo(photo, caption.format(message.from_user.id), reply_to_message_id = message.message_id,
+    await query.message.reply_photo(photo, caption(message.from_user.id),
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
