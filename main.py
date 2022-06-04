@@ -296,7 +296,7 @@ async def id(client, message):
     )
 
 @app.on_message(filters.command("n"))
-async def n(client, message):
+async def n(client, query):
     message = query.message
     photo = get(f"https://single-developers.up.railway.app/logo?name={query.from_user.first_name}").history[1].url
     await message.reply_chat_action("upload_photo")
