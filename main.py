@@ -26,7 +26,7 @@ caption = """
 
 ◇───────────────◇
 
-🚀 ** You Id ** ➳ `{query.from_user.id}`
+🚀 ** You Id ** ➳ `{}`
 
 🌺 **You Name** : #press Button(my name)
 
@@ -132,7 +132,7 @@ async def n(_,query):
     await query.message.delete()
     text = query.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(caption,
+    await query.message.reply(caption2.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -142,7 +142,7 @@ async def n(_,query):
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My name ✍", callback_data="n"
+                        "✍ My Id ✍", callback_data="id"
                     )
                 ]
             ]
