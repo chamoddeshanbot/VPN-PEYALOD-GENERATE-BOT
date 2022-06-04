@@ -155,11 +155,11 @@ async def start(bot, message):
       reply_markup=InlineKeyboardMarkup(
           [[InlineKeyboardButton("Netwok Tech Chat 🇱🇰", url=f"https://t.me/Network_techchat")]]), reply_to_message_id = message.message_id)
 
-@app.on_message(filters.command("start") & filters.group)
+@app.on_message(filters.command("start"))
 async def start(client: Client, message: Message):
     try:
         await message.reply_chat_action("typing")
-        await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
+        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
@@ -246,7 +246,7 @@ async def id(bot, message):
 async def about_(client: Client, message: Message):
     try:
         await message.reply_chat_action("typing")
-        await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
+        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
