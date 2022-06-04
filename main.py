@@ -63,8 +63,8 @@ app = Client(
  
 @app.on_message(filters.command("id"))
 async def id(client, message):
-  text = message.text.split(None, 1)[1]
-  photo = await generate_logo({message.from_user.id})
+  text = message.from_user.id
+  photo = await generate_logo(text)
   await message.reply_chat_action("upload_photo")
   await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.id), reply_to_message_id = message.message_id,
                reply_markup=InlineKeyboardMarkup(
