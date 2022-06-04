@@ -132,7 +132,7 @@ async def n(_,query):
     await query.message.delete()
     text = query.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(caption2.format(message.from_user.mention),
+    await query.message.reply(caption2.format(query.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
