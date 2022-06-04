@@ -132,29 +132,12 @@ app = Client(
     api_id = Config.API_ID,
     api_hash = Config.API_HASH
 )
-
-
-IB = """**🎨 Successfully Generated logo ✅** \n\n **🏖 This Logo was sent to the Requester by Bot Inbox 🛠** \n\n 🍀 User Id : {query.from_user.id}"""
- 
  
 FSUBB = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton(text="Network Tech 🇱🇰", url=f"https://t.me/NetworksTech") 
         ]]      
     )
-
-INB = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton("✖️ close ✖️", callback_data="close") 
-        ]]      
-    )
-
-
-@app.on_message(filters.command("start") & filters.private)
-async def start(bot, message):
-  await message.reply_photo("https://telegra.ph/file/8f9bfbaae3a8f021acbc0.jpg",caption=START,
-      reply_markup=InlineKeyboardMarkup(
-          [[InlineKeyboardButton("Netwok Tech Chat 🇱🇰", url=f"https://t.me/Network_techchat")]]), reply_to_message_id = message.message_id)
 
 @app.on_message(filters.command("start"))
 async def start(client: Client, message: Message):
@@ -236,12 +219,6 @@ async def start(client: Client, message: Message):
 @app.on_message(filters.command("help"))
 async def help(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
-
-@app.on_message(filters.command("id"))
-async def id(bot, message):
-  photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
-  await message.reply_photo(photo=photo,caption=ID)
-
 
 @app.on_message(filters.command("about"))
 async def about_(client: Client, message: Message):
@@ -345,7 +322,7 @@ async def on_off_antiarab(_, message: Message):
     await status.edit("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
-    photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.mention}").history[1].url
+    photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.first_name}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
@@ -366,18 +343,18 @@ async def on_off_antiarab(_, message: Message):
  
 
 @app.on_callback_query(filters.regex("id"))
-async def id(app, query):
-  cb_data = query.data
-  await query.answer(f"🤞🏿 You Id 🌿")
-  await query.message.delete()
-  await id(app, query.message)
+async def button(app, update):
+      cb_data = update.data
+      if "id" in cb_data:
+        await update.message.delete()
+        await id(app, update.message)
+      elif "name" in cb_data:
+        await update.message.delete()
+        await name(app, update.message)
+      elif "ha" in cb_data:
+        await update.message.delete()
 
-@app.on_callback_query(filters.regex("pic"))
-async def help(_,query):
-  await query.answer(f"🏖 Bot Help 🏖")
-  await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
-
-@app.on_callback_query(filters.regex("name"))
+@app.on_callback_query(filters.regex("namWje"))
 async def help(_,query):
   await query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
