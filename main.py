@@ -275,8 +275,7 @@ async def about_(client: Client, message: Message):
     )
 
 @app.on_message(filters.command("id"))
-async def id(bot, message):
-  await message.reply("searching")
+async def id(client, message):
   photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
   await message.reply_chat_action("upload_photo")
   await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.id), reply_to_message_id = message.message_id,
@@ -297,7 +296,7 @@ async def id(bot, message):
     )
 
 @app.on_message(filters.command("n"))
-async def n(bot, message):
+async def n(client, message):
     text = {message.from_user.last_name}
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
