@@ -21,8 +21,8 @@ import requests
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-caption = """
-✍️ User Info Bot 🇱🇰
+CAPTION = """
+✍️ User Info ✍️
 
 ◇───────────────◇
 
@@ -36,7 +36,7 @@ caption = """
 
 ◇───────────────◇️  """
 caption2 = """
-✍️ User Info Bot 🇱🇰
+✍️ User Info ✍️
 
 ◇───────────────◇
 
@@ -108,7 +108,7 @@ async def id(_,query):
     await query.message.delete()
     text = query.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply_photo(photo, caption,
+    await query.message.reply_photo(photo,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -124,6 +124,7 @@ async def id(_,query):
             ]
           )
     )
+    await query.message.edit(CAPTION)
     
 
 
