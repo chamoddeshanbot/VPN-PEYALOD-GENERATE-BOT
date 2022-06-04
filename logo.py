@@ -44,9 +44,9 @@ async def generate_logo(text: str, square: Optional[bool] = False ):
     square = str(square).capitalize()
   
     if square == "True":
-      url = LOGO_API_URL2 + {message.from_user.id}
+      url = LOGO_API_URL2 + text
     else:
-      url = LOGO_API_URL1 + {message.from_user.id}
+      url = LOGO_API_URL1 + text
   
     async with aiohttp.ClientSession() as session: 
       async with session.get(url) as resp:  
