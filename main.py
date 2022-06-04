@@ -275,7 +275,7 @@ async def about_(client: Client, message: Message):
     )
 
 @app.on_message(filters.command("id"))
-async def on_off_antiarab(_, message: Message):
+async def id(bot, message):
     await message.reply("searching')
     photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
     await message.reply_chat_action("upload_photo")
@@ -297,7 +297,7 @@ async def on_off_antiarab(_, message: Message):
     )
 
 @app.on_message(filters.command("name"))
-async def on_off_antiarab(_, message: Message):
+async def name(bot, message):
     status = await message.reply("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
