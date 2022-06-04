@@ -276,14 +276,7 @@ async def about_(client: Client, message: Message):
 
 @app.on_message(filters.command("id"))
 async def on_off_antiarab(_, message: Message):
-    try:
-        await message.reply_chat_action("typing")
-        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
-    except UserNotParticipant:
-        await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
-    )
-        return
+    await message.reply("searching')
     photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.id), reply_to_message_id = message.message_id,
@@ -305,14 +298,6 @@ async def on_off_antiarab(_, message: Message):
 
 @app.on_message(filters.command("name"))
 async def on_off_antiarab(_, message: Message):
-    try:
-        await message.reply_chat_action("typing")
-        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
-    except UserNotParticipant:
-        await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
-    )
-        return
     status = await message.reply("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
