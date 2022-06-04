@@ -122,7 +122,7 @@ async def id(_,query):
 ◇───────────────◇️  """
     text = query.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply_photo(photo, caption,
+    await query.message.reply_photo(caption,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -132,7 +132,7 @@ async def id(_,query):
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My Id ✍", callback_data="id"
+                        "✍ My name ✍", callback_data="n"
                     )
                 ]
             ]
