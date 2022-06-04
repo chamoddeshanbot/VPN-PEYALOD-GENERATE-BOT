@@ -276,6 +276,7 @@ async def about_(client: Client, message: Message):
 
 @app.on_message(filters.command("id"))
 async def id(client, message):
+  await message.reply("jwjwj")
   text = {message.from_user.id}
   photo = await generate_logo(text)
   await message.reply_chat_action("upload_photo")
