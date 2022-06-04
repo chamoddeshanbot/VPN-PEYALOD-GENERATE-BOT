@@ -21,7 +21,7 @@ import requests
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-CAPTION = """
+caption = """
 ✍️ User Info ✍️
 
 ◇───────────────◇
@@ -104,25 +104,11 @@ async def n(client, message):
 @app.on_callback_query(filters.regex("id"))
 async def id(_,query):
     message = query.message
-    await query.answer(f"🏖 You Id 🏖")
+    await query.answer(f"🤞🏿 You Id 🏖")
     await query.message.delete()
-    caption = """
-✍️ User Info ✍️
-
-◇───────────────◇
-
-🚀 ** You Id ** ➳ `{query.from_user.id}`
-
-🌺 **You Name** : #press Button(my name)
-
-🌿 **My Picture ** : #press Button(my picture)
-
-🤞🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**
-
-◇───────────────◇️  """
     text = query.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply_photo(caption,
+    await query.message.reply_photo(photo,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -139,7 +125,29 @@ async def id(_,query):
           )
     )
     
-
+@app.on_callback_query(filters.regex("n"))
+async def n(_,query):
+    message = query.message
+    await query.answer(f"🤞🏿 You Name 🏖")
+    await query.message.delete()
+    text = query.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await query.message.reply(caption,
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📸 My Picture 📸", callback_data="pic"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "✍ My name ✍", callback_data="n"
+                    )
+                ]
+            ]
+          )
+    )
 
 @app.on_callback_query()
 async def button(app, update):
