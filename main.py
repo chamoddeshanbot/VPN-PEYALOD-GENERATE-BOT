@@ -111,7 +111,7 @@ async def id(_,query):
     await query.answer(f"🏖 You Id 🏖")
     text = message.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
+    await query.message.reply(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
