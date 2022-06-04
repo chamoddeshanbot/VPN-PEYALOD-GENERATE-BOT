@@ -30,7 +30,7 @@ caption = """
 
 ◇───────────────◇
 
-🚀 ** You Id ** ➳ ´{}´
+🚀 ** You Id ** ➳ `{}`
 
 🌺 **You Name** : #press Button(my name)
 
@@ -296,9 +296,8 @@ async def id(client, message):
     )
 
 @app.on_message(filters.command("n"))
-async def n(_,query):
-    message = query.message
-    photo = get(f"https://single-developers.up.railway.app/logo?name={query.from_user.first_name}").history[1].url
+async def n(client, message):
+    photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.first_name}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
