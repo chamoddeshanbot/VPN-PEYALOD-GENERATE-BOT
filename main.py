@@ -64,7 +64,7 @@ app = Client(
 @app.on_message(filters.command("id"))
 async def id(client, message):
   text = message.from_user.id
-  photo = await generate_logo(text)
+  photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
   await message.reply_chat_action("upload_photo")
   await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.id), reply_to_message_id = message.message_id,
                reply_markup=InlineKeyboardMarkup(
@@ -85,8 +85,8 @@ async def id(client, message):
 
 @app.on_message(filters.command("n"))
 async def n(client, message):
-    text = {message.from_user.first_name}
-    photo = await generate_logo(text)
+    text = message.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
@@ -105,6 +105,30 @@ async def n(client, message):
           )
     )
  
+@app.on_callback_query(filters.regex("id"))
+async def id(_,query):
+    message = query.message
+    await query.answer(f"🏖 You Id 🏖")
+    text = message.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await query.message.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📸 My Picture 📸", callback_data="pic"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "✍ My Id ✍", callback_data="id"
+                    )
+                ]
+            ]
+          )
+    )
+    await query.message.delete()
+
 
 @app.on_callback_query()
 async def button(app, update):
