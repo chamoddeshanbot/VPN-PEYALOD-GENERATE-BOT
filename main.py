@@ -312,7 +312,6 @@ async def on_off_antiarab(_, message: Message):
     await status.edit("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
-    text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
