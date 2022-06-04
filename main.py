@@ -76,7 +76,7 @@ async def id(client, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My name ✍", callback_data="name"
+                        "✍ My name ✍", callback_data="n"
                     )
                 ]
             ]
