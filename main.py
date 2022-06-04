@@ -108,7 +108,7 @@ async def id(_,query):
     await query.message.delete()
     text = query.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply_photo(photo,
+    s = await query.message.reply_photo(photo,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -124,7 +124,7 @@ async def id(_,query):
             ]
           )
     )
-    await query.message.edit(CAPTION)
+    await query.s.edit(CAPTION)
     
 
 
