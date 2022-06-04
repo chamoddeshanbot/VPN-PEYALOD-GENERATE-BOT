@@ -109,9 +109,9 @@ async def n(client, message):
 async def id(_,query):
     message = query.message
     await query.answer(f"🏖 You Id 🏖")
-    text = message.from_user.first_name
+    text = query.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(photo,
+    await query.message.reply_photo(photo,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
