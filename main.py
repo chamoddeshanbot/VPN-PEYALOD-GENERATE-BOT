@@ -296,18 +296,10 @@ async def id(bot, message):
           )
     )
 
-@app.on_message(filters.command("name"))
-async def name(bot, message):
-    status = await message.reply("**⚙ Generating You Logo ....**",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
-    await status.edit("**⚙ Generating You Logo ....**",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
-    await status.edit("**⚙ Generating You Logo ....**",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
-    photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.first_name}").history[1].url
+@app.on_message(filters.command("n"))
+async def n(bot, message):
+    text = {message.from_user.last_name}
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
@@ -327,15 +319,15 @@ async def name(bot, message):
     )
  
 
-@app.on_callback_query(filters.regex("id"))
+@app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
       if "id" in cb_data:
         await update.message.delete()
         await id(app, update.message)
-      elif "name" in cb_data:
+      elif "n" in cb_data:
         await update.message.delete()
-        await name(app, update.message)
+        await n(app, update.message)
       elif "ha" in cb_data:
         await update.message.delete()
 
