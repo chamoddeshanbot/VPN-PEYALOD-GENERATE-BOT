@@ -25,7 +25,7 @@ import requests
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-caption = """
+ID = """
 ✍️ User Info Bot 🇱🇰
 
 ◇───────────────◇
@@ -232,15 +232,20 @@ async def start(client: Client, message: Message):
     )
 
 
-@app.on_message(filters.command("help") & filters.group)
+@app.on_message(filters.command("help"))
 async def help(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
+@app.on_message(filters.command("id"))
+async def id(bot, message):
+  photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
+  await message.reply_photo(photo=photo,caption=ID)
 
-@app.on_message(filters.command("about") & filters.group)
+
+@app.on_message(filters.command("about"))
 async def about_(client: Client, message: Message):
     try:
-        await message.reply_chat_action(enums.ChatAction.TYPING)
+        await message.reply_chat_action("typing")
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -373,9 +378,7 @@ async def on_off_antiarab(_, message: Message):
 @app.on_callback_query(filters.regex("id"))
 async def id(_,query):
   await query.answer(f"🤞🏿 You Id 🌿")
-  photo = get(f"https://single-developers.up.railway.app/logo?name={message.from_user.id}").history[1].url
-  await query.message.reply_chat_action("upload_photo")
-  await query.message.edit(photo)
+  await query.message.edit(ID)
 
 @app.on_callback_query(filters.regex("pic"))
 async def help(_,query):
