@@ -1,24 +1,13 @@
 from pyrogram import Client, filters
-import random
 from config import Config
-import result
-from pyrogram.types import InputMediaPhoto, User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Chat
-from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, FloodWait
+from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup
 )
-from pyrogram import filters
-from telegram import Message, MessageId
-from telegram.ext import CallbackContext, Filters, MessageHandler
-from telegram.error import ChatMigrated
-from telegram.update import Update
 from pyrogram.types import Message
-from pyrogram import Client
 from requests import get
 import os
-import requests
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 caption = """
@@ -41,6 +30,21 @@ caption2 = """
 ◇───────────────◇
 
 🚀 ** You name ** ➳ {}
+
+🌺 **You id ** : #press Button(my id)
+
+🌿 **My Picture ** : #press Button(my picture)
+
+🤞🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**
+
+◇───────────────◇️  """
+
+caption3 = """
+✍️ User Info ✍️
+
+◇───────────────◇
+
+🚀 ** You Username ** ➳ ` {} `
 
 🌺 **You id ** : #press Button(my id)
 
@@ -92,7 +96,7 @@ BUTTON = InlineKeyboardMarkup(
                 ],
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="picture"
+                        "📸 My Picture 📸", callback_data="pic"
                     )
                 ],
                 [
@@ -131,7 +135,7 @@ async def id(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="picture"
+                        "🌿 My Username 🌿", callback_data="user"
                     )
                 ],
                 [
@@ -153,7 +157,7 @@ async def name(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="picture"
+                        "🌿 My Username 🌿", callback_data="user"
                     )
                 ],
                 [
@@ -170,12 +174,12 @@ async def username(client, message):
     text = message.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
+    await app.send_photo(message.chat.id, photo=photo, caption =caption3.format(message.from_user.username), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="picture"
+                        "📝 My name 📝", callback_data="name"
                     )
                 ],
                 [
@@ -227,11 +231,11 @@ async def picture(client, message):
           )
     )
 
-@app.on_message(filters.command("pic"))
+@app.on_callback_query(filters.regex("pic"))
 async def pic(_,query):
     message = query.message
-    file = await client.download_media(query.from_user.photo.big_file_id)
-    await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
+    file = await query.message.download_media(query.from_user.photo.big_file_id)
+    await query.message.reply_photo(file,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -278,7 +282,32 @@ async def id(_,query):
             ]
           )
     )
-    
+
+@app.on_callback_query(filters.regex("user"))
+async def user(_,query):
+    message = query.message
+    await query.answer(f"🤞🏿 You Username 🏖")
+    await query.message.delete()
+    text = query.from_user.username
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await query.message.reply(caption2.format(query.from_user.username),
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📝 My name 📝", callback_data="name"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "✍ My Id ✍", callback_data="id"
+                    )
+                ]
+            ]
+          )
+    )
+
+  
 @app.on_callback_query(filters.regex("name"))
 async def name(_,query):
     message = query.message
