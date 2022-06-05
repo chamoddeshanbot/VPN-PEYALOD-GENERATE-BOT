@@ -205,6 +205,27 @@ async def picture(client, message):
           )
     )
 
+@app.on_message(filters.command("pic"))
+async def pic(_,query):
+    message = query.message
+    file = await client.download_media(query.from_user.photo.big_file_id)
+    await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "✍ My Id ✍", callback_data="id"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "📝 My name 📝", callback_data="name"
+                    )
+                ]
+            ]
+          )
+    )
+
 @app.on_callback_query(filters.regex("dev"))
 async def dev(_,query):
     message = query.message
@@ -263,9 +284,9 @@ async def name(_,query):
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
-      if "picture" in cb_data:
+      if "pic" in cb_data:
         await update.answer(f"🤞🏿 You Picture 🏖")
         await update.message.delete()
-        await picture(app, update.message)
+        await pic(app, update.message)
 
 app.run()
