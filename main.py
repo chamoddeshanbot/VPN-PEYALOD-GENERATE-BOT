@@ -87,7 +87,7 @@ BUTTON = InlineKeyboardMarkup(
                 ],
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ],
                 [
@@ -126,12 +126,12 @@ async def id(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My name ✍", callback_data="name"
+                        "📝 My name 📝", callback_data="name"
                     )
                 ]
             ]
@@ -148,7 +148,7 @@ async def n(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ],
                 [
@@ -160,8 +160,8 @@ async def n(client, message):
           )
     )
 
-@app.on_message(filters.command("pic"))
-async def pic(client, message):
+@app.on_message(filters.command("picture"))
+async def picture(client, message):
     file = await client.download_media(message.from_user.photo.big_file_id)
     await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
         reply_markup=InlineKeyboardMarkup(
@@ -192,12 +192,12 @@ async def id(_,query):
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My name ✍", callback_data="name"
+                        "📝 My name 📝", callback_data="name"
                     )
                 ]
             ]
@@ -216,7 +216,49 @@ async def name(_,query):
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "✍ My Id ✍", callback_data="id"
+                    )
+                ]
+            ]
+          )
+    )
+
+@app.on_callback_query(filters.regex("picture"))
+async def picture(_,query):
+    message = query.message
+    await query.answer(f"🤞🏿 You picture 🏖")
+    await query.message.delete()
+    file = await client.download_media(message.from_user.photo.big_file_id)
+    if not file:
+        text = query.from_user.id
+        photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+        await query.message.reply_photo(photo,
+                     reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "✍ My id ✍", callback_data="id"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "📝 My name 📝", callback_data="name"
+                    )
+                ]
+            ]
+          )
+        return ""
+    await query.message.reply(file,
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📝 My Name 📝", callback_data="name"
                     )
                 ],
                 [
