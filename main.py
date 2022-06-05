@@ -166,7 +166,7 @@ async def picture(client, message):
     if not file:
         text = query.from_user.id
         photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-        await query.message.reply_photo(photo,
+        await app.send_photo(photo=photo,
                      reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -181,6 +181,8 @@ async def picture(client, message):
                 ]
             ]
           )
+    )
+      return ""
     await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
         reply_markup=InlineKeyboardMarkup(
             [
@@ -270,6 +272,8 @@ async def picture(_,query):
                 ]
             ]
           )
+    )
+      return ""
     await query.message.reply(file,
                  reply_markup=InlineKeyboardMarkup(
             [
