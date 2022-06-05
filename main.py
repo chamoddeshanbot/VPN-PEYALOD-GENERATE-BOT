@@ -1,10 +1,4 @@
 from pyrogram import Client, filters
-import html
-
-from telethon.tl.functions.photos import GetUserPhotosRequest
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import MessageEntityMentionName
-from telethon.utils import get_input_location
 import random
 from config import Config
 import result
@@ -138,7 +132,7 @@ async def id(client, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My name ✍", callback_data="n"
+                        "✍ My name ✍", callback_data="name"
                     )
                 ]
             ]
@@ -167,8 +161,8 @@ async def n(client, message):
           )
     )
 
-@app.on_message(filters.command("n"))
-async def n(client, message):
+@app.on_message(filters.command("pic"))
+async def pic(client, message):
     profile = get_user_profile_photos(message.from_user.id).photos[0][-1]
     file = get_file(profile["file_id"])
     file.download(f"{user.id}.png")
@@ -208,15 +202,15 @@ async def id(_,query):
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My name ✍", callback_data="n"
+                        "✍ My name ✍", callback_data="name"
                     )
                 ]
             ]
           )
     )
     
-@app.on_callback_query(filters.regex("n"))
-async def n(_,query):
+@app.on_callback_query(filters.regex("name"))
+async def name(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You Name 🏖")
     await query.message.delete()
