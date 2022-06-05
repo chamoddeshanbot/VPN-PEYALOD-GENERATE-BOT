@@ -143,9 +143,31 @@ async def id(client, message):
           )
     )
 
-@app.on_message(filters.command("n"))
-async def n(client, message):
+@app.on_message(filters.command("name"))
+async def name(client, message):
     text = message.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📸 My Picture 📸", callback_data="picture"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "✍ My Id ✍", callback_data="id"
+                    )
+                ]
+            ]
+          )
+    )
+
+@app.on_message(filters.command("username"))
+async def username(client, message):
+    text = message.from_username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
