@@ -205,13 +205,6 @@ async def picture(client, message):
           )
     )
 
-@app.on_callback_query(filters.regex("dev"))
-async def dev(_,query):
-    message = query.message
-    await query.answer(f"🤞🏿 My Dev 🇱🇰")
-    await query.message.delete()
-    await query.message.reply(DEV)
-
 @app.on_callback_query(filters.regex("id"))
 async def id(_,query):
     message = query.message
@@ -236,4 +229,28 @@ async def id(_,query):
           )
     )
     
+@app.on_callback_query(filters.regex("name"))
+async def name(_,query):
+    message = query.message
+    await query.answer(f"🤞🏿 You Name 🏖")
+    await query.message.delete()
+    text = query.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await query.message.reply(caption2.format(query.from_user.mention),
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📸 My Picture 📸", callback_data="picture"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "✍ My Id ✍", callback_data="id"
+                    )
+                ]
+            ]
+          )
+    )
+
 app.run()
