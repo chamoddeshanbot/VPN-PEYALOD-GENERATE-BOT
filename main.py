@@ -263,9 +263,9 @@ async def name(_,query):
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
-      if "picture" in cb_data:
+      if "pure" in cb_data:
         await update.message.delete()
-        await picture(app, update.message)
+        await picr(app, update.message)
 
 
 app.run()
