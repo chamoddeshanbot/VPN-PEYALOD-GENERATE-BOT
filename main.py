@@ -162,7 +162,7 @@ async def n(client, message):
 
 @app.on_message(filters.command("pic"))
 async def pic(client, message): 
-    profile = message.from_user.id).photos[0][-1]
+    profile = (message.from_user.id).photos[0][-1]
     file = await app.download_media(profile.file_id)
     await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
         reply_markup=InlineKeyboardMarkup(
