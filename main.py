@@ -266,11 +266,6 @@ async def button(app, update):
       if "picture" in cb_data:
         await update.message.delete()
         await picture(app, update.message)
-      elif "n" in cb_data:
-        await update.message.delete()
-        await n(app, update.message)
-      elif "ha" in cb_data:
-        await update.message.delete()
 
 
 app.run()
