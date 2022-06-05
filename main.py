@@ -162,28 +162,25 @@ async def n(client, message):
     )
 
 @app.on_message(filters.command("pic"))
-async def pic(client, message):
-    profile = get_profile_photos(message.from_user.id).photos[0][-1]
-    file = get_file(profile["file_id"])
-    file.download(f"{user.id}.png")
-    await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=file, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
-                 reply_markup=InlineKeyboardMarkup(
+async def pic(client, message): 
+    profile = message.from_user.id).photos[0][-1]
+    file = await app.download_media(profile.file_id)
+    await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
+        reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "✍ My Id ✍", callback_data="id"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "✍ My Id ✍", callback_data="id"
+                        "📝 My name 📝", callback_data="name"
                     )
                 ]
             ]
           )
     )
-
 
 @app.on_callback_query(filters.regex("id"))
 async def id(_,query):
