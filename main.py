@@ -163,6 +163,24 @@ async def n(client, message):
 @app.on_message(filters.command("picture"))
 async def picture(client, message):
     file = await client.download_media(message.from_user.photo.big_file_id)
+    if not file:
+        text = query.from_user.id
+        photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+        await query.message.reply_photo(photo,
+                     reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "✍ My id ✍", callback_data="id"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "📝 My name 📝", callback_data="name"
+                    )
+                ]
+            ]
+          )
     await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
         reply_markup=InlineKeyboardMarkup(
             [
@@ -252,7 +270,6 @@ async def picture(_,query):
                 ]
             ]
           )
-        return
     await query.message.reply(file,
                  reply_markup=InlineKeyboardMarkup(
             [
