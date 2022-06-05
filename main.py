@@ -171,18 +171,18 @@ async def picture(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "✍ My id ✍", callback_data="id"
+                        "📝 My Name 📝", callback_data="name"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "📝 My name 📝", callback_data="name"
+                        "✍ My Id ✍", callback_data="id"
                     )
                 ]
             ]
           )
     )
-      return ""
+        return
     await app.send_photo(message.chat.id, photo=file, reply_to_message_id = message.message_id,
         reply_markup=InlineKeyboardMarkup(
             [
@@ -262,18 +262,18 @@ async def picture(_,query):
             [
                 [
                     InlineKeyboardButton(
-                        "✍ My id ✍", callback_data="id"
+                        "📝 My Name 📝", callback_data="name"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "📝 My name 📝", callback_data="name"
+                        "✍ My Id ✍", callback_data="id"
                     )
                 ]
             ]
           )
     )
-      return ""
+        return
     await query.message.reply(file,
                  reply_markup=InlineKeyboardMarkup(
             [
