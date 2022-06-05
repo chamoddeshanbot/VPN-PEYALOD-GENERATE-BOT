@@ -68,6 +68,11 @@ Hello There {} 🌿
 
 """
 
+DEV = """ 
+🤞🏿 Developer 🇱🇰
+
+|| @About_Deshan ||
+
 BUTTON = InlineKeyboardMarkup(
             [
                 [
@@ -200,6 +205,13 @@ async def picture(client, message):
           )
     )
 
+@app.on_callback_query(filters.regex("dev"))
+async def dev(_,query):
+    message = query.message
+    await query.answer(f"🤞🏿 My Dev 🇱🇰")
+    await query.message.delete()
+    await query.message.reply(DEV)
+
 @app.on_callback_query(filters.regex("id"))
 async def id(_,query):
     message = query.message
@@ -248,55 +260,12 @@ async def name(_,query):
           )
     )
 
-@app.on_callback_query(filters.regex("picture"))
-async def picture(_,query):
-    message = query.message
-    await query.answer(f"🤞🏿 You picture 🏖")
-    await query.message.delete()
-    file = await query.download_media(message.from_user.photo.big_file_id)
-    if not file:
-        text = query.from_user.id
-        photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-        await query.message.reply_photo(photo,
-                     reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "📝 My Name 📝", callback_data="name"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        "✍ My Id ✍", callback_data="id"
-                    )
-                ]
-            ]
-          )
-    )
-        return
-    await query.message.reply(file,
-                 reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "📝 My Name 📝", callback_data="name"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        "✍ My Id ✍", callback_data="id"
-                    )
-                ]
-            ]
-          )
-    )
-
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
-      if "id" in cb_data:
+      if "picture" in cb_data:
         await update.message.delete()
-        await id(app, update.message)
+        await picture(app, update.message)
       elif "n" in cb_data:
         await update.message.delete()
         await n(app, update.message)
