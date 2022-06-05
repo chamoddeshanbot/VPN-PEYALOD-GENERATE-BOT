@@ -10,7 +10,6 @@ from pyrogram.types import (
 )
 from pyrogram import filters
 from telegram import Message, MessageId
-from pyrogram import get_profile_photos
 from telegram.ext import CallbackContext, Filters, MessageHandler
 from telegram.error import ChatMigrated
 from telegram.update import Update
