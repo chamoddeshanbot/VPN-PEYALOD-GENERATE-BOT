@@ -253,7 +253,7 @@ async def picture(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You picture 🏖")
     await query.message.delete()
-    file = await client.download_media(message.from_user.photo.big_file_id)
+    file = await query.download_media(message.from_user.photo.big_file_id)
     if not file:
         text = query.from_user.id
         photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
