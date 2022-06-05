@@ -10,7 +10,7 @@ from pyrogram.types import (
 )
 from pyrogram import filters
 from telegram import Message, MessageId
-from telegram import GetUserProfilePhotos
+from pyrogram import get_profile_photos
 from telegram.ext import CallbackContext, Filters, MessageHandler
 from telegram.error import ChatMigrated
 from telegram.update import Update
@@ -163,7 +163,7 @@ async def n(client, message):
 
 @app.on_message(filters.command("pic"))
 async def pic(client, message):
-    profile = GetUserProfilePhotos(message.from_user.id).photos[0][-1]
+    profile = get_profile_photos(message.from_user.id).photos[0][-1]
     file = get_file(profile["file_id"])
     file.download(f"{user.id}.png")
     await message.reply_chat_action("upload_photo")
