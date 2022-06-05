@@ -102,7 +102,6 @@ BUTTON = InlineKeyboardMarkup(
                 ]
            ]
         )
-    )
 
 
 app = Client(
