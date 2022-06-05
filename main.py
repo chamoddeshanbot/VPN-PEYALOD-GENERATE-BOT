@@ -252,7 +252,7 @@ async def picture(_,query):
                 ]
             ]
           )
-        return ""
+        return
     await query.message.reply(file,
                  reply_markup=InlineKeyboardMarkup(
             [
