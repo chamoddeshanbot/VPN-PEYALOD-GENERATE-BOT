@@ -260,12 +260,4 @@ async def name(_,query):
           )
     )
 
-@app.on_callback_query()
-async def button(app, update):
-      cb_data = update.data
-      if "pure" in cb_data:
-        await update.message.delete()
-        await picr(app, update.message)
-
-
 app.run()
