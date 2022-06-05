@@ -71,7 +71,7 @@ Hello There {} 🌿
 DEV = """ 
 🤞🏿 Developer 🇱🇰
 
-|| @About_Deshan ||
+|| @About_Deshan || """
 
 BUTTON = InlineKeyboardMarkup(
             [
@@ -204,6 +204,13 @@ async def picture(client, message):
             ]
           )
     )
+
+@app.on_callback_query(filters.regex("dev"))
+async def dev(_,query):
+    message = query.message
+    await query.answer(f"🤞🏿 My Dev 🇱🇰")
+    await query.message.delete()
+    await query.message.reply(DEV)
 
 @app.on_callback_query(filters.regex("id"))
 async def id(_,query):
