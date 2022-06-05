@@ -284,9 +284,9 @@ async def name(_,query):
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
-      if "pic" in cb_data:
+      if "picture" in cb_data:
         await update.answer(f"🤞🏿 You Picture 🏖")
         await update.message.delete()
-        await pic(app, update.message)
+        await picture(app, update.message)
 
 app.run()
