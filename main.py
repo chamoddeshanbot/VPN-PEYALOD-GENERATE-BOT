@@ -50,7 +50,7 @@ caption2 = """
 
 ◇───────────────◇️  """
 
-START = """
+captiont = """
 Hello There {} 🌿
 
 ** 🤞🏿 User Info Bot 🇱🇰**
