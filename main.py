@@ -259,7 +259,7 @@ async def dev(_,query):
     await query.message.delete()
     await query.message.reply(DEV)
 
-@app.on_callback_query(filters.regex("ind"))
+@app.on_callback_query(filters.regex("id"))
 async def id(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You Id 🏖")
@@ -290,7 +290,7 @@ async def user(_,query):
     await query.message.delete()
     text = query.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(caption2.format(query.from_user.username),
+    await query.message.reply(caption3.format(query.from_user.username),
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -308,7 +308,7 @@ async def user(_,query):
     )
 
   
-@app.on_callback_query(filters.regex("namie"))
+@app.on_callback_query(filters.regex("name"))
 async def name(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You Name 🏖")
@@ -339,11 +339,11 @@ async def button(app, update):
         await update.answer(f"🤞🏿 You Picture 🏖")
         await update.message.delete()
         await picture(app, update.message)
-      elif "id" in cb_data:
+      elif "ivd" in cb_data:
         await update.answer(f"🤞🏿 You Id 🏖")
         await update.message.delete()
         await id(app, update.message)
-      elif "name" in cb_data:
+      elif "nagme" in cb_data:
         await update.answer(f"🤞🏿 You name 🏖")
         await update.message.delete()
         await name(app, update.message)
