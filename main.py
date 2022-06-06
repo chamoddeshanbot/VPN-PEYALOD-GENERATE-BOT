@@ -259,7 +259,7 @@ async def dev(_,query):
     await query.message.delete()
     await query.message.reply(DEV)
 
-@app.on_callback_query(filters.regex("id"))
+@app.on_callback_query(filters.regex("ind"))
 async def id(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You Id 🏖")
@@ -339,5 +339,9 @@ async def button(app, update):
         await update.answer(f"🤞🏿 You Picture 🏖")
         await update.message.delete()
         await picture(app, update.message)
+      elif "id" in cb_data:
+        await update.answer(f"🤞🏿 You Id 🏖")
+        await update.message.delete()
+        await id(app, update.message)
 
 app.run()
