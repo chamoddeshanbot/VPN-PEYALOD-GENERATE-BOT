@@ -308,7 +308,7 @@ async def user(_,query):
     )
 
   
-@app.on_callback_query(filters.regex("name"))
+@app.on_callback_query(filters.regex("namie"))
 async def name(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You Name 🏖")
@@ -343,5 +343,9 @@ async def button(app, update):
         await update.answer(f"🤞🏿 You Id 🏖")
         await update.message.delete()
         await id(app, update.message)
+      elif "name" in cb_data:
+        await update.answer(f"🤞🏿 You name 🏖")
+        await update.message.delete()
+        await name(app, update.message)
 
 app.run()
