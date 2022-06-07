@@ -124,7 +124,7 @@ app = Client(
 async def start(bot, message):
   await message.reply_photo("https://telegra.ph/file/65a7f792ade3adf3cb6cf.jpg",caption=captiont.format(message.from_user.first_name), reply_markup=BUTTON, reply_to_message_id = message.message_id)
    
-@app.on_message(filters.forwarded)
+@app.on_message(filters.command("fd"))
 async def fd(client, message):
   text =f" You Id : {message.from_user.id}"
   channel =f" Channel Id : {message.forward_from_chat}"
@@ -313,7 +313,7 @@ async def user(_,query):
     await query.message.delete()
     text = query.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(photo,
+    await query.message.reply_photo(photo,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
