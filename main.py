@@ -55,7 +55,7 @@ caption3 = """
 ◇───────────────◇️  """
 
 captiont = """
-Hello There {} 🌿
+🌿 Hello There {}
 
 ** 🤞🏿 User Info Bot 🇱🇰**
 
@@ -63,10 +63,10 @@ Hello There {} 🌿
 
 /id You Id,Group Id,Channel Id
 /name You name
-/picture
-/usrname
-/first 
-/last
+/picture You Picture
+/usrname You Username
+/first You Firsname
+/last You Lastname
  
 🌿 Dev : || @chamod_deshan ||
 
@@ -96,7 +96,7 @@ BUTTON = InlineKeyboardMarkup(
                 ],
                 [
                     InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="pic"
+                        "🌿 My Usrname 🌿", callback_data="user"
                     )
                 ],
                 [
@@ -120,7 +120,7 @@ app = Client(
     api_hash = Config.API_HASH
 )
  
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command(["start", "help"]))
 async def start(bot, message):
   await message.reply_photo("https://telegra.ph/file/65a7f792ade3adf3cb6cf.jpg",caption=captiont.format(message.from_user.first_name), reply_markup=BUTTON, reply_to_message_id = message.message_id)
    
@@ -290,7 +290,7 @@ async def user(_,query):
     await query.message.delete()
     text = query.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(caption3.format(query.from_user.username),
+    await query.message.reply(photo),
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
