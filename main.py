@@ -126,7 +126,7 @@ async def start(bot, message):
    
 @app.on_message(filters.forward)
 async def fd(client, message):
-  text = You Id = {message.from_user.id}\n Channel Id = {forward.id}
+  text = You Id = {message.from_user.id}\n Channel Id = {message.forward_from_chat}
   photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
   await message.reply_chat_action("upload_photo")
   await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.id), reply_to_message_id = message.message_id,
