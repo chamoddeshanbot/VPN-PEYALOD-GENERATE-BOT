@@ -124,6 +124,28 @@ app = Client(
 async def start(bot, message):
   await message.reply_photo("https://telegra.ph/file/65a7f792ade3adf3cb6cf.jpg",caption=captiont.format(message.from_user.first_name), reply_markup=BUTTON, reply_to_message_id = message.message_id)
    
+@app.on_message(filters.forward)
+async def fd(client, message):
+  text = You Id = {message.from_user.id}\n Channel Id = {forward.id}
+  photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+  await message.reply_chat_action("upload_photo")
+  await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.id), reply_to_message_id = message.message_id,
+               reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🌿 My Username 🌿", callback_data="user"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "📝 My name 📝", callback_data="name"
+                    )
+                ]
+            ]
+          )
+    )
+
 
 @app.on_message(filters.command("id"))
 async def id(client, message):
@@ -290,7 +312,7 @@ async def user(_,query):
     await query.message.delete()
     text = query.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(photo),
+    await query.message.reply(photo,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
