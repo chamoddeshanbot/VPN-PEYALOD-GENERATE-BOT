@@ -340,7 +340,7 @@ async def name(_,query):
     text = query.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await query.message.edit_message_media(chat_id=text,
-        InputMediaPhoto(photo))
+        InputMediaPhoto("photo"))
 
 @app.on_callback_query()
 async def button(app, update):
