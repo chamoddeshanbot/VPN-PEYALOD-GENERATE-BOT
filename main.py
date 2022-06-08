@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from pyrogram.types import InputMediaPhoto, InputMediaVideo, InputMediaAudio
 from config import Config
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
 from pyrogram.types import (
@@ -338,22 +339,8 @@ async def name(_,query):
     await query.message.delete()
     text = query.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await query.message.reply(caption2.format(query.from_user.mention),
-                 reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "📸 My Picture 📸", callback_data="picture"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        "✍ My Id ✍", callback_data="id"
-                    )
-                ]
-            ]
-          )
-    )
+    await query.message.edit_message_media(chat_id=text,
+        InputMediaPhoto(photo))
 
 @app.on_callback_query()
 async def button(app, update):
