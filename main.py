@@ -336,7 +336,6 @@ async def user(_,query):
 async def name(_,query):
     message = query.message
     await query.answer(f"🤞🏿 You Name 🏖")
-    await query.message.delete()
     text = query.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await query.message.edit_message_media(chat_id=text,
