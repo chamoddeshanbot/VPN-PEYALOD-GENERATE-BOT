@@ -190,12 +190,12 @@ async def id(client, message):
 
 @app.on_message(filters.command("username"))
 async def username(client, message):
-    text = {message.from_username}
+    text = {message.username}
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=ucaption.format(message.from_username),
+        caption=ucaption.format(message.username),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
