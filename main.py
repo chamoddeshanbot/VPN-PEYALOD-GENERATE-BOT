@@ -142,7 +142,7 @@ async def id(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=icaption,
+        caption=icaption(message.from_user.id),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -166,7 +166,7 @@ async def username(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=ucaption,
+        caption=ucaption(message.from_username),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -191,7 +191,7 @@ async def firstname(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=fcaption,
+        caption=fcaption(message.from_user.first_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
