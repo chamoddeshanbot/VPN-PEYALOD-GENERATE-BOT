@@ -119,11 +119,39 @@ pcaption = """
 
 ◇───────────────◇️  """
 
+STARTBUTTON = InlineKeyboardMarkup(
+             [
+                [
+                    InlineKeyboardButton(" Network Tech 🇱🇰", url = "https://t.me/NetworksTech"),
+                    InlineKeyboardButton("Network Tech Chat 🇱🇰 ", url = "https://t.me/Network_techchat")
+                 ],
+                 [
+                    InlineKeyboardButton(" You Picture ", callback_data = "picme"),
+                    InlineKeyboardButton(" You Username ", callback_data = "logo")
+                 ],
+                 [
+                    InlineKeyboardButton("🌷 You Id 🌷", callback_data = "wall"),
+                    InlineKeyboardButton(" You Name , user_id=1467358214)
+                 ],
+                 [
+                    InlineKeyboardButton("   Dev   ", callback_data = "info"),
+                    InlineKeyboardButton("  Help  ", callback_data = "hirs")
+                 ],
+     
+             ]
+
+        )
+
+HELPBUTTON = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton("<<<< Back ", callback_data="start") 
+        ]]
+
 @app.on_message(filters.command("start"))
 async def start(client, message):
     await app.send_photo(message.chat.id,
         photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg",
-        caption=scaption(message.from_user.first_name),
+        caption=scaption.format(message.from_user.first_name),
         reply_markup=STARTBUTTON,
         reply_to_message_id = message.message_id)
 
@@ -131,7 +159,7 @@ async def start(client, message):
 async def help(client, message):
     await app.send_photo(message.chat.id,
         photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg",
-        caption=hcaption,
+        caption=hcaption.format(message.from_user.mention),
         reply_markup=HELPBUTTON,
         reply_to_message_id = message.message_id)
 
@@ -142,7 +170,7 @@ async def id(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=icaption(message.from_user.id),
+        caption=icaption.format(message.from_user.id),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -166,7 +194,7 @@ async def username(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=ucaption(message.from_username),
+        caption=ucaption.format(message.from_username),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -191,7 +219,7 @@ async def firstname(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=fcaption(message.from_user.first_name),
+        caption=fcaption.format(message.from_user.first_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
