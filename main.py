@@ -144,7 +144,7 @@ STARTBUTTON = InlineKeyboardMarkup(
 
 HELPBUTTON = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton("<<<< Back ", callback_data="start") 
+        InlineKeyboardButton("<<<< Back ", callback_data="start"))
         ]]
 
 @app.on_message(filters.command("start"))
