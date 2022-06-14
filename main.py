@@ -251,6 +251,7 @@ async def firstname(client, message):
     text = message.chat.last_name
     if not text:
      await message.reply("not found")
+     return
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
