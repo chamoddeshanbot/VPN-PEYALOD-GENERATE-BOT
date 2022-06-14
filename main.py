@@ -172,7 +172,7 @@ async def help(client, message):
 @app.on_message(filters.command("id"))
 async def id(client, message):
     await message.reply_chat_action("typing")
-    text = message.from_user.id
+    text = message.chat.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -197,7 +197,7 @@ async def id(client, message):
 @app.on_message(filters.command("username"))
 async def username(client, message):
     await message.reply_chat_action("typing")
-    text = message.from_user.username
+    text = message.chat.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -228,7 +228,7 @@ async def firstname(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=fcaption.format(message.from_user.first_name),
+        caption=fcaption.format(message.chat.first_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -275,7 +275,7 @@ async def firstname(client, message):
 @app.on_message(filters.command("picture"))
 async def picture(client, message):
     await message.reply_chat_action("typing")
-    photoid = message.from_user.photo.big_file_id
+    photoid = message.chat.photo.big_file_id
     photo = await client.download_media(photoid)
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
