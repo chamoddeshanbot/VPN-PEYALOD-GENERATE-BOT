@@ -16,10 +16,10 @@ scaption = """
 🍀 I'm You Info Bot
 
 🌷 ➳ You Id
-   ➳ You First Name
-   ➳ You Last Name
-   ➳ You User Name
-   ➳ You Picture
+    ➳ You First Name
+    ➳ You Last Name
+    ➳ You User Name
+    ➳ You Picture
 
 🏖 How to Use Bot Press /help Command
 
@@ -122,20 +122,23 @@ pcaption = """
 STARTBUTTON = InlineKeyboardMarkup(
              [
                 [
+                    InlineKeyboardButton("➕ ❰ ᴀᴅᴅ ᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ ❱ ➕", url=f"https://t.me/The_my_info_bot?startgroup=true")
+                 ],
+                 [
                     InlineKeyboardButton(" Network Tech 🇱🇰", url = "https://t.me/NetworksTech"),
                     InlineKeyboardButton("Network Tech Chat 🇱🇰 ", url = "https://t.me/Network_techchat")
                  ],
                  [
-                    InlineKeyboardButton(" You Picture ", callback_data = "picme"),
-                    InlineKeyboardButton(" You Username ", callback_data = "logo")
+                    InlineKeyboardButton("📸 You Picture 📸", callback_data = "picme"),
+                    InlineKeyboardButton("🌿 You Username 🌿", callback_data = "logo")
                  ],
                  [
                     InlineKeyboardButton("🌷 You Id 🌷", callback_data = "wall"),
-                    InlineKeyboardButton(" You Name ", user_id=1901997764)
+                    InlineKeyboardButton("✍ You Name ✍", user_id=1901997764)
                  ],
                  [
-                    InlineKeyboardButton("   Dev   ", callback_data = "info"),
-                    InlineKeyboardButton("  Help  ", callback_data = "hirs")
+                    InlineKeyboardButton("✌️🏿   Dev  ✌️🏿", callback_data = "info"),
+                    InlineKeyboardButton("🆘    Help    🆘", callback_data = "hirs")
                  ],
      
              ]
@@ -166,7 +169,7 @@ async def help(client, message):
 
 @app.on_message(filters.command("id"))
 async def id(client, message):
-    text = {message.from_user.id}
+    text = message.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -190,7 +193,7 @@ async def id(client, message):
 
 @app.on_message(filters.command("username"))
 async def username(client, message):
-    text = {message.from_user.username}
+    text = message.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -215,7 +218,33 @@ async def username(client, message):
 
 @app.on_message(filters.command("firstname"))
 async def firstname(client, message):
-    text = {message.from_user.first_name}
+    text = message.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id,
+        photo=photo,
+        caption=fcaption.format(message.from_user.first_name),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "You Name Logo", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        " My Picture ", callback_data="pic"
+                    )
+                ]
+            ]
+          )
+    )
+
+@app.on_message(filters.command("lastname"))
+async def firstname(client, message):
+    text = message.from_user.last_name
+    if not text:
+     await message.reply("not found")
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
