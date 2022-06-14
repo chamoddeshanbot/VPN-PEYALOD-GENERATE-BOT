@@ -15,11 +15,11 @@ scaption = """
 
 🍀 I'm You Info Bot
 
-🌷 ➳ You Id
-    ➳ You First Name
-    ➳ You Last Name
-    ➳ You User Name
-    ➳ You Picture
+➳ You Id
+➳ You First Name
+➳ You Last Name
+➳ You User Name
+➳ You Picture
 
 🏖 How to Use Bot Press /help Command
 
