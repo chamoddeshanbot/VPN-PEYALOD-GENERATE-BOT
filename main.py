@@ -172,7 +172,7 @@ async def help(client, message):
 @app.on_message(filters.command("id"))
 async def id(client, message):
     await message.reply_chat_action("typing")
-    text =f"message.chat.id\n\nmessage.from_user.id"
+    text =f"{message.chat.id} \n\n {message.from_user.id}"
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
