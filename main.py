@@ -153,6 +153,7 @@ HELPBUTTON = InlineKeyboardMarkup(
 
 @app.on_message(filters.command("start"))
 async def start(client, message):
+    await message.reply_chat_action("typing")
     await app.send_photo(message.chat.id,
         photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg",
         caption=scaption.format(message.from_user.first_name),
@@ -161,6 +162,7 @@ async def start(client, message):
 
 @app.on_message(filters.command("help"))
 async def help(client, message):
+    await message.reply_chat_action("typing")
     await app.send_photo(message.chat.id,
         photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg",
         caption=hcaption.format(message.from_user.mention),
@@ -169,6 +171,7 @@ async def help(client, message):
 
 @app.on_message(filters.command("id"))
 async def id(client, message):
+    await message.reply_chat_action("typing")
     text = message.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
@@ -193,6 +196,7 @@ async def id(client, message):
 
 @app.on_message(filters.command("username"))
 async def username(client, message):
+    await message.reply_chat_action("typing")
     text = message.from_user.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
@@ -218,6 +222,7 @@ async def username(client, message):
 
 @app.on_message(filters.command("firstname"))
 async def firstname(client, message):
+    await message.reply_chat_action("typing")
     text = message.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
@@ -242,6 +247,7 @@ async def firstname(client, message):
 
 @app.on_message(filters.command("lastname"))
 async def firstname(client, message):
+    await message.reply_chat_action("typing")
     text = message.from_user.last_name
     if not text:
      await message.reply("not found")
@@ -249,7 +255,7 @@ async def firstname(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=fcaption.format(message.from_user.first_name),
+        caption=fcaption.format(message.from_user.last_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -268,6 +274,7 @@ async def firstname(client, message):
 
 @app.on_message(filters.command("picture"))
 async def picture(client, message):
+    await message.reply_chat_action("typing")
     photoid = message.from_user.photo.big_file_id
     photo = await client.download_media(photoid)
     await message.reply_chat_action("upload_photo")
