@@ -306,7 +306,7 @@ async def picture(client, message):
     await message.reply_chat_action("typing")
     photoid = message.chat.photo.big_file_id
     if not photoid:
-    await message.reply("not found")
+     await message.reply("not found")
     return
     photo = await client.download_media(photoid)
     await message.reply_chat_action("upload_photo")
