@@ -177,7 +177,7 @@ async def id(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=icaption.format(message.from_user.id),
+        caption=icaption.format(message.chat.id),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -202,7 +202,7 @@ async def username(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=ucaption.format(message.from_user.username),
+        caption=ucaption.format(message.chat.username),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -223,7 +223,7 @@ async def username(client, message):
 @app.on_message(filters.command("firstname"))
 async def firstname(client, message):
     await message.reply_chat_action("typing")
-    text = message.from_user.first_name
+    text = message.chat.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -248,14 +248,14 @@ async def firstname(client, message):
 @app.on_message(filters.command("lastname"))
 async def firstname(client, message):
     await message.reply_chat_action("typing")
-    text = message.from_user.last_name
+    text = message.chat.last_name
     if not text:
      await message.reply("not found")
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=fcaption.format(message.from_user.last_name),
+        caption=fcaption.format(message.chat.last_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
