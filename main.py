@@ -169,10 +169,35 @@ async def help(client, message):
         reply_markup=HELPBUTTON,
         reply_to_message_id = message.message_id)
 
-@app.on_message(filters.command("id"))
+@app.on_message(filters.command("id") & filters.private)
 async def id(client, message):
     await message.reply_chat_action("typing")
-    text =f"Group Id : {message.chat.id} \n\n You Id : {message.from_user.id}"
+    text =f"You Id : {message.from_user.id}"
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id,
+        photo=photo,
+        caption=icaption.format(message.chat.id),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "You Id Logo", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        " My User Name ", callback_data="user"
+                    )
+                ]
+            ]
+          )
+    )
+
+@app.on_message(filters.command("id") & filters.group)
+async def id(client, message):
+    await message.reply_chat_action("typing")
+    text =f"Group Id : {message.chat.id}\n\nYou Id : {message.from_user.id}"
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
