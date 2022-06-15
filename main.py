@@ -51,8 +51,6 @@ hcaption = """
 /lastname - 📚 You Lastname """
 
 
-ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
-
 pcaption = """
 ✌️🏿 You Info Bot 🇱🇰
 
@@ -177,7 +175,10 @@ async def id(client, message):
 async def username(client, message):
     await message.reply_chat_action("typing")
     text =f"Y : {message.from_user.username}"
+    ted = message.from_user.username
+    ged = message.chat.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\nGroup Username ➳ `{ged}`🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
