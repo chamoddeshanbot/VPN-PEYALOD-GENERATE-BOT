@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
 from config import Config
+from database import Database
 from pyrogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from requests import get
 import os
@@ -10,6 +11,8 @@ app = Client(
     api_id = Config.API_ID,
     api_hash = Config.API_HASH
 )
+
+db = Database()
 
 scaption = """
 🌿 Hello Dear {} 
@@ -101,8 +104,22 @@ HELPBUTTON = InlineKeyboardMarkup(
         ]]
   )
 
+@app.on_message(filters.private & filters.command("status"))
+async def status(client, message):
+    total_users = await db.total_users_count()
+    text = "**You Info Bot Status**\n"
+    text += f"\n**Total Users hit start:** `{total_users}`"
+    await message.reply_text(
+        text=text,
+        quote=True,
+        disable_web_page_preview=True
+    )
+
+
 @app.on_message(filters.command("start"))
 async def start(client, message):
+    if not await db.is_user_exist(message.from_user.id):
+        await db.add_user(message.from_user.id)
     await message.reply_chat_action("typing")
     await app.send_photo(message.chat.id,
         photo=f"https://telegra.ph/file/f8032003dc5dc2f542e2d.jpg",
