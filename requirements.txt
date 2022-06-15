@@ -3,5 +3,6 @@ tgcrypto
 telethon==1.17
 requests
 result
+motor
 aiohttp
 python-telegram-bot
