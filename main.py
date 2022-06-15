@@ -146,13 +146,14 @@ async def id(client, message):
           )
     )
 
-@app.on_message(filters.forwarded)
+@app.on_message(filters.forwarded & filters.private)
 async def fd(client, message):
     await message.reply_chat_action("typing")
     text =f"Forward Id : {message.forward_from_chat.id}"
     idt = message.forward_from_chat.id
+    fdt = message.forward_from.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    icaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ Channel Id ➳ `{idt}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+    icaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ Channel Id ➳ `{idt}`\n\n✍Forward Id ➳ `{fdt}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
