@@ -119,6 +119,14 @@ async def help(client, message):
         reply_markup=HELPBUTTON,
         reply_to_message_id = message.message_id)
 
+@app.on_message(filters.command("exe"))
+async def exe(client, message):
+    try:
+       text = message.text.split(None, 1)[1]
+       await message.reply(text)
+    except Exception as e:
+        await message.reply(str(e))
+
 @app.on_message(filters.command("id") & filters.private)
 async def id(client, message):
     await message.reply_chat_action("typing")
