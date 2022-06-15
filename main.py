@@ -146,6 +146,33 @@ async def id(client, message):
           )
     )
 
+@app.on_message(filters.forwarded)
+async def fd(client, message):
+    await message.reply_chat_action("typing")
+    text =f"Forward Id : {message.forward_from_chat.id}"
+    idt = message.forward_from_chat.id
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    icaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ Channel Id ➳ `{idt}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id,
+        photo=photo,
+        caption=icaption.format(message.chat.id),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "You Id Logo", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        " My User Name ", callback_data="user"
+                    )
+                ]
+            ]
+          )
+    )
+
 @app.on_message(filters.command("id") & filters.group)
 async def id(client, message):
     await message.reply_chat_action("typing")
