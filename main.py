@@ -123,7 +123,7 @@ async def help(client, message):
 async def exe(client, message):
     try:
        text = message.text.split(None, 1)[1]
-       await message.reply(chat_id=text)
+       await app.send_message(chat_id=text)
     except Exception as e:
         await message.reply(str(e))
 
