@@ -105,7 +105,7 @@ HELPBUTTON = InlineKeyboardMarkup(
 async def start(client, message):
     await message.reply_chat_action("typing")
     await app.send_photo(message.chat.id,
-        photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg",
+        photo=f"https://telegra.ph/file/f8032003dc5dc2f542e2d.jpg",
         caption=scaption.format(message.from_user.first_name),
         reply_markup=STARTBUTTON,
         reply_to_message_id = message.message_id)
@@ -114,7 +114,7 @@ async def start(client, message):
 async def help(client, message):
     await message.reply_chat_action("typing")
     await app.send_photo(message.chat.id,
-        photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg",
+        photo=f"https://telegra.ph/file/f8032003dc5dc2f542e2d.jpg",
         caption=hcaption.format(message.from_user.mention),
         reply_markup=HELPBUTTON,
         reply_to_message_id = message.message_id)
@@ -406,13 +406,13 @@ async def button(bot: Client, cmd: CallbackQuery):
       elif "hel" in cb_data:
         try:
             await cmd.answer(f"🌷 Bot Help")
-            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=hcaption.format(cmd.from_user.mention)), reply_markup=HELPBUTTON)
+            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/f8032003dc5dc2f542e2d.jpg", caption=hcaption.format(cmd.from_user.mention)), reply_markup=HELPBUTTON)
         except Exception as e:
             print(str(e))
       elif "sta" in cb_data:
         try:
             await cmd.answer(f"🍀 Bot menu")
-            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=scaption.format(cmd.from_user.mention)), reply_markup=STARTBUTTON)
+            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/f8032003dc5dc2f542e2d.jpg", caption=scaption.format(cmd.from_user.mention)), reply_markup=STARTBUTTON)
         except Exception as e:
             print(str(e))
 
