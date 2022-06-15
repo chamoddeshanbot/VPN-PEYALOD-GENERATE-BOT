@@ -124,7 +124,8 @@ async def exe(client, message):
     try:
        text = message.text.split(None, 1)[1]
        id = {text}
-       await app.send_message(message.chat.id, caption=f"You Pyrogram Data Is Done {id})
+       cap =f"You Pyrogram Data Is Done {id}"
+       await app.send_message(message.chat.id, caption=cap)
     except Exception as e:
         await message.reply(str(e))
 
