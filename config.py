@@ -3,3 +3,4 @@ class Config:
     API_HASH = "972c0f2e94973b5ffa9a89cb34e5671b" # 🤖 Get It From My.telegram.org.
     BOT_TOKEN = "5450587760:AAEKPa4rb8pLx83hZQeloDutUjlCZYcPcYs" # 🤖 Get It From @BotFather (Telegram) By Sending /newbot Command.
     DB_NAME = "telegram"
+    DATABASE = "mongodb+srv://telegram:telegram@cluster0.7l36y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
