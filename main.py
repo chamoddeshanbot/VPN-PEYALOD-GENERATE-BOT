@@ -125,7 +125,7 @@ async def exe(client, message):
        text = message.text.split(None, 1)[1]
        id = {text}
        cap =f"You Pyrogram Data Is Done {id}"
-       await app.send_photo(message.chat.id, caption=cap)
+       await app.send_photo(message.chat.id, photo=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=cap)
     except Exception as e:
         await message.reply(str(e))
 
