@@ -151,7 +151,7 @@ async def fd(client, message):
     await message.reply_chat_action("typing")
     text =f"Forward Id : {message.forward_from_chat.id}"
     idt = message.forward_from_chat.id
-    fdt = message.forward_from.id
+    fdt = message.forward_from.user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     icaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ Channel Id ➳ `{idt}`\n\n✍Forward Id ➳ `{fdt}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
