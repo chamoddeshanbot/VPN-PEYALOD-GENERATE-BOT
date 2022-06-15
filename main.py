@@ -379,13 +379,13 @@ async def button(bot: Client, cmd: CallbackQuery):
       elif "hel" in cb_data:
         try:
             await cmd.answer(f"🌷 Bot Help")
-            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=hcaption), reply_markup=HELPBUTTON)
+            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=hcaption.format(cmd.from_user.mention)), reply_markup=HELPBUTTON)
         except Exception as e:
             print(str(e))
       elif "sta" in cb_data:
         try:
             await cmd.answer(f"🍀 Bot menu")
-            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=scaption), reply_markup=STARTBUTTON)
+            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=scaption.format(cmd.from_user.mention)), reply_markup=STARTBUTTON)
         except Exception as e:
             print(str(e))
 
