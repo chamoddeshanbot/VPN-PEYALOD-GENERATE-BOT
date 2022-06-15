@@ -57,6 +57,8 @@ icaption = """
 
 ✍ Group Id ➳ `{}`
 
+✍ You Id ➳ `{idt}`
+
 🌺 You Name #command(/firstname)
 
 🌿 You Picture #command(/picture)
@@ -198,6 +200,7 @@ async def id(client, message):
 async def id(client, message):
     await message.reply_chat_action("typing")
     text =f"G : {message.chat.id}\n\nY: {message.from_user.id}"
+    idt = message.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
