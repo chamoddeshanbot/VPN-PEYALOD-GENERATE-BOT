@@ -261,7 +261,7 @@ async def firstname(client, message):
 async def firstname(client, message):
     await message.reply_chat_action("typing")
     idy = message.from_user.first_name
-    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    photo = get(f"https://single-developers.up.railway.app/logo?name={idy}").history[1].url
     fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ You Name ➳ `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -286,7 +286,7 @@ async def firstname(client, message):
 @app.on_message(filters.command("lastname"))
 async def firstname(client, message):
     await message.reply_chat_action("typing")
-    text = message.chat.last_name
+    text = message.from_user.last_name
     if not text:
      await message.reply("not found")
      return
