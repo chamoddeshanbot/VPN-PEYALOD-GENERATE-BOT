@@ -55,8 +55,6 @@ icaption = """
 
 ◇───────────────◇
 
-✍ You Id ➳ `{}`
-
 ✍ Group Id ➳ `{}`
 
 🌺 You Name #command(/firstname)
@@ -204,7 +202,7 @@ async def id(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=icaption.format(message.from_user.id).format(message.chat.id),
+        caption=icaption.format(message.chat.id),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
