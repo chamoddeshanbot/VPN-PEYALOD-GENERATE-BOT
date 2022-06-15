@@ -182,7 +182,7 @@ async def username(client, message):
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=ucaption.format(message.chat.username),
+        caption=ucaption,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -206,11 +206,11 @@ async def firstname(client, message):
     text = message.chat.title
     idy = message.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ {text}\n\n✍ You Name `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+    fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ `{text}`\n\n✍ You Name `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=fcaption.format(message.chat.first_name),
+        caption=fcaption,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
