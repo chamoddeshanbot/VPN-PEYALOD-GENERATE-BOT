@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from config import Config
 from pyrogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from requests import get
+import os
 
 app = Client(
     'My Info Bot',
@@ -79,15 +80,15 @@ STARTBUTTON = InlineKeyboardMarkup(
                  ],
                  [
                     InlineKeyboardButton("📸 You Picture 📸", callback_data = "picture"),
-                    InlineKeyboardButton("🌿 You Username 🌿", callback_data = "logo")
+                    InlineKeyboardButton("🌿 You Username 🌿", callback_data = "usernam")
                  ],
                  [
-                    InlineKeyboardButton("🌷 You Id 🌷", callback_data = "wall"),
-                    InlineKeyboardButton("✍ You Name ✍", callback_data = "ff")
+                    InlineKeyboardButton("🌷 You Id 🌷", callback_data = "id"),
+                    InlineKeyboardButton("✍ You Name ✍", callback_data = "firstname")
                  ],
                  [
                     InlineKeyboardButton("✌️🏿   Dev  ✌️🏿", user_id=1901997764),
-                    InlineKeyboardButton("🆘    Help    🆘", callback_data = "hirs")
+                    InlineKeyboardButton("🆘    Help    🆘", callback_data = "help")
                  ],
      
              ]
@@ -340,7 +341,7 @@ async def button(bot: Client, cmd: CallbackQuery):
       cb_data = cmd.data
       if "picture" in cb_data:
         try:
-            await cmd.answer("📸 Capture started...Downloading Your dp")
+            await cmd.answer("📸 You Profile Photo")
             photoid = cmd.from_user.photo.big_file_id  
             photo = await app.download_media(photoid)
             await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=pcaption), reply_markup=STARTBUTTON)
@@ -348,8 +349,16 @@ async def button(bot: Client, cmd: CallbackQuery):
         except Exception as e:
             print(str(e))
             if os.path.exists(photo):os.remove(photo)
-      elif "start" in cb_data:
-        await update.message.delete()
-        await start(app, update.message)
+      elif "usernam" in cb_data:
+        try:
+            await cmd.answer(f"🌿 You User Name ➳ {cmd.from_user.username}")
+            ted = cmd.from_user.username
+            photo = get(f"https://single-developers.up.railway.app/logo?name={ted}".replace(' ','%60'))
+            ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+            await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=ucaption), reply_markup=STARTBUTTON)
+            if os.path.exists(photo):os.remove(photo)
+        except Exception as e:
+            print(str(e))
+            if os.path.exists(photo):os.remove(photo)
 
 app.run()
