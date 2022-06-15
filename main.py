@@ -353,7 +353,7 @@ async def button(bot: Client, cmd: CallbackQuery):
         try:
             await cmd.answer(f"🌿 You User Name ➳ {cmd.from_user.username}")
             ted = cmd.from_user.username
-            photo = get(f"https://single-developers.up.railway.app/logo?name={ted}".replace(' ','%60'))
+            photo = get(f"https://single-developers.up.railway.app/logo?name={ted}").history[1].url
             ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
             await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=ucaption), reply_markup=STARTBUTTON)
         except Exception as e:
