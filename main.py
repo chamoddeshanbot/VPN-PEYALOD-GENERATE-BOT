@@ -123,7 +123,8 @@ async def help(client, message):
 async def exe(client, message):
     try:
        text = message.text.split(None, 1)[1]
-       await app.send_message(chat_id=text)
+       id = {text}
+       await app.send_message(message.chat.id, caption=f"You Pyrogram Data Is Done {id})
     except Exception as e:
         await message.reply(str(e))
 
