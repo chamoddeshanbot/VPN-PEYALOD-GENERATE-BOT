@@ -134,12 +134,12 @@ async def id(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Id Logo", url=f"{photo}"
+                        "🍀 You Id Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My User Name ", callback_data="user"
+                        "🌿 My User Name 🌿", callback_data="usernam"
                     )
                 ]
             ]
@@ -162,12 +162,12 @@ async def fd(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Id Logo", url=f"{photo}"
+                        "🍀 You Id Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My User Name ", callback_data="user"
+                        "🌿 My User Name 🌿", callback_data="usernam"
                     )
                 ]
             ]
@@ -190,12 +190,12 @@ async def id(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Id Logo", url=f"{photo}"
+                        "🍀 You Id Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My User Name ", callback_data="user"
+                        "🌿 My User Name 🌿", callback_data="usernam"
                     )
                 ]
             ]
@@ -217,12 +217,12 @@ async def username(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You User Name Logo", url=f"{photo}"
+                        "🍀 You User Name Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My Name ", callback_data="user"
+                        "✍ My Name ✍", callback_data="first"
                     )
                 ]
             ]
@@ -245,12 +245,12 @@ async def username(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You User Name Logo", url=f"{photo}"
+                        "🍀 You User Name Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My Name ", callback_data="user"
+                        "✍ My Name ✍", callback_data="first"
                     )
                 ]
             ]
@@ -273,12 +273,12 @@ async def firstname(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Name Logo", url=f"{photo}"
+                        "🍀 You Name Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My Picture ", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ]
             ]
@@ -299,12 +299,12 @@ async def firstname(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Name Logo", url=f"{photo}"
+                        "🍀 You Name Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My Picture ", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ]
             ]
@@ -327,12 +327,12 @@ async def firstname(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Name Logo", url=f"{photo}"
+                        "🍀 You Name Logo 🍀", url=f"{photo}"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My Picture ", callback_data="pic"
+                        "📸 My Picture 📸", callback_data="picture"
                     )
                 ]
             ]
@@ -352,12 +352,12 @@ async def picture(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "You Id", callback_data="id"
+                        "🌷 You Id 🌷", callback_data="idt"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        " My User Name ", callback_data="user"
+                        "✍ My name ✍", callback_data="first"
                     )
                 ]
             ]
