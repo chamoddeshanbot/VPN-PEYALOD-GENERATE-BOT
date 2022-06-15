@@ -202,7 +202,7 @@ async def username(client, message):
 @app.on_message(filters.command("firstname"))
 async def firstname(client, message):
     await message.reply_chat_action("typing")
-    text = message.chat_title
+    text = message.chat.title
     idy = message.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ {text}\n\n✍ You Name `{idy}`\n/n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
