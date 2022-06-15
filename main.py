@@ -78,15 +78,15 @@ STARTBUTTON = InlineKeyboardMarkup(
                     InlineKeyboardButton("Network Tech Chat 🇱🇰 ", url = "https://t.me/Network_techchat")
                  ],
                  [
-                    InlineKeyboardButton("📸 You Picture 📸", callback_data = "picme"),
+                    InlineKeyboardButton("📸 You Picture 📸", callback_data = "picture"),
                     InlineKeyboardButton("🌿 You Username 🌿", callback_data = "logo")
                  ],
                  [
                     InlineKeyboardButton("🌷 You Id 🌷", callback_data = "wall"),
-                    InlineKeyboardButton("✍ You Name ✍", user_id=1901997764)
+                    InlineKeyboardButton("✍ You Name ✍", callback_data = "ff")
                  ],
                  [
-                    InlineKeyboardButton("✌️🏿   Dev  ✌️🏿", callback_data = "info"),
+                    InlineKeyboardButton("✌️🏿   Dev  ✌️🏿", user_id=1901997764),
                     InlineKeyboardButton("🆘    Help    🆘", callback_data = "hirs")
                  ],
      
@@ -229,13 +229,39 @@ async def username(client, message):
     )
 
 
-@app.on_message(filters.command("firstname"))
+@app.on_message(filters.command("firstname") & filters.group)
 async def firstname(client, message):
     await message.reply_chat_action("typing")
     text = message.chat.title
     idy = message.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ `{text}`\n\n✍ You Name ➳ `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id,
+        photo=photo,
+        caption=fcaption,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "You Name Logo", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        " My Picture ", callback_data="pic"
+                    )
+                ]
+            ]
+          )
+    )
+
+@app.on_message(filters.command("firstname") & filters.private)
+async def firstname(client, message):
+    await message.reply_chat_action("typing")
+    idy = message.from_user.first_name
+    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ You Name ➳ `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
@@ -308,5 +334,22 @@ async def picture(client, message):
             ]
           )
     )
+
+@app.on_callback_query()
+async def button(bot: Client, cmd: CallbackQuery):
+      cb_data = cmd.data
+      if "picture" in cb_data:
+        try:
+            await cmd.answer("📸 Capture started...Downloading Your dp")
+            photoid = cmd.from_user.photo.big_file_id  
+            photo = await app.download_media(photoid)
+            await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=pcaption), reply_markup=STARTBUTTON)
+            if os.path.exists(photo):os.remove(photo)
+        except Exception as e:
+            print(str(e))
+            if os.path.exists(photo):os.remove(photo)
+      elif "start" in cb_data:
+        await update.message.delete()
+        await start(app, update.message)
 
 app.run()
