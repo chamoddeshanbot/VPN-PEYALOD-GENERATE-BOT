@@ -57,6 +57,8 @@ icaption = """
 
 ✍ You Id ➳ `{}`
 
+✍ Group Id ➳ `{}`
+
 🌺 You Name #command(/firstname)
 
 🌿 You Picture #command(/picture)
@@ -197,12 +199,12 @@ async def id(client, message):
 @app.on_message(filters.command("id") & filters.group)
 async def id(client, message):
     await message.reply_chat_action("typing")
-    text =f"➳ : {message.chat.id}\n\n➳ : {message.from_user.id}"
+    text =f"G : {message.chat.id}\n\nY: {message.from_user.id}"
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
-        caption=icaption.format(message.chat.id),
+        caption=icaption.format(message.from_user.id), (message.chat.id),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
