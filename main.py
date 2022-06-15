@@ -68,23 +68,6 @@ ucaption = """
 
 ◇───────────────◇️  """
 
-fcaption = """
-✌️🏿 You Info Bot 🇱🇰
-
-◇───────────────◇
-
-🌺 You Firstname ➳ {}
-
-✍ You Id #command(/id)
-
-🌿 You Picture #command(/picture)
-
-🌷 You Username #command(/username)
-
-🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**
-
-◇───────────────◇️  """
-
 pcaption = """
 ✌️🏿 You Info Bot 🇱🇰
 
@@ -208,7 +191,7 @@ async def id(client, message):
 @app.on_message(filters.command("username"))
 async def username(client, message):
     await message.reply_chat_action("typing")
-    text =f"Username : {message.from_user.username}"
+    text =f"Y : {message.from_user.username}"
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
@@ -234,11 +217,10 @@ async def username(client, message):
 @app.on_message(filters.command("firstname"))
 async def firstname(client, message):
     await message.reply_chat_action("typing")
-    text = message.chat.first_name
-    if not text:
-     await message.reply("not found")
-     return
+    text = message.chat.name
+    idy = message.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
+    fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ {text}\n\n✍ You Name `{idy}`\n/n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
