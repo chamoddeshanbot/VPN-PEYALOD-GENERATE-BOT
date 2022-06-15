@@ -178,7 +178,7 @@ async def username(client, message):
     ted = message.from_user.username
     ged = message.chat.username
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\nGroup Username ➳ `{ged}`🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+    ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\nGroup Username ➳ `{ged}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
@@ -206,7 +206,7 @@ async def firstname(client, message):
     text = message.chat.title
     idy = message.from_user.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ {text}\n\n✍ You Name `{idy}`\n/n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+    fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ {text}\n\n✍ You Name `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id,
         photo=photo,
