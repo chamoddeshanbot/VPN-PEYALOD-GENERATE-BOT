@@ -146,7 +146,7 @@ async def id(client, message):
 @app.on_message(filters.command("id") & filters.group)
 async def id(client, message):
     await message.reply_chat_action("typing")
-    text =f"G : {message.chat.id}\n\nY: {message.from_user.id}"
+    text =f"G : {message.chat.id}\n\nY : {message.from_user.id}"
     idt = message.from_user.id
     gdt = message.chat.id
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
@@ -204,7 +204,7 @@ async def username(client, message):
 async def firstname(client, message):
     await message.reply_chat_action("typing")
     text = message.chat.title
-    idy = message.from_user.id
+    idy = message.from_user.first_name
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 Group Name ➳ {text}\n\n✍ You Name `{idy}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
     await message.reply_chat_action("upload_photo")
