@@ -6,7 +6,7 @@ class Database:
 
     def __init__(self):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(Config.DATABASE)
-        self.db = self._client[DB_NAME]
+        self.db = self._client[Config.DB_NAME]
         self.dcol = self.db.users
         
     def new_user(self, id):
