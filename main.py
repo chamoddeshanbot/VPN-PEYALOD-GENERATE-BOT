@@ -83,12 +83,12 @@ STARTBUTTON = InlineKeyboardMarkup(
                     InlineKeyboardButton("🌿 You Username 🌿", callback_data = "usernam")
                  ],
                  [
-                    InlineKeyboardButton("🌷 You Id 🌷", callback_data = "id"),
-                    InlineKeyboardButton("✍ You Name ✍", callback_data = "firstname")
+                    InlineKeyboardButton("🌷 You Id 🌷", callback_data = "idt"),
+                    InlineKeyboardButton("✍ You Name ✍", callback_data = "first")
                  ],
                  [
                     InlineKeyboardButton("✌️🏿   Dev  ✌️🏿", user_id=1901997764),
-                    InlineKeyboardButton("🆘    Help    🆘", callback_data = "help")
+                    InlineKeyboardButton("🆘    Help    🆘", callback_data = "hel")
                  ],
      
              ]
@@ -97,7 +97,7 @@ STARTBUTTON = InlineKeyboardMarkup(
 
 HELPBUTTON = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton("<<<< Back ", callback_data="start")
+        InlineKeyboardButton("<<<< Back ", callback_data="sta")
         ]]
   )
 
@@ -356,6 +356,36 @@ async def button(bot: Client, cmd: CallbackQuery):
             photo = get(f"https://single-developers.up.railway.app/logo?name={ted}").history[1].url
             ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
             await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=ucaption), reply_markup=STARTBUTTON)
+        except Exception as e:
+            print(str(e))
+      elif "idt" in cb_data:
+        try:
+            await cmd.answer(f"🌿 You Id ➳ {cmd.from_user.id}")
+            ted = cmd.from_user.id
+            photo = get(f"https://single-developers.up.railway.app/logo?name={ted}").history[1].url
+            icaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You id ➳ `{ted}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+            await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=icaption), reply_markup=STARTBUTTON)
+        except Exception as e:
+            print(str(e))
+      elif "first" in cb_data:
+        try:
+            await cmd.answer(f"🌿 You firstname ➳ {cmd.from_user.first_name}")
+            ted = cmd.from_user.first_name
+            photo = get(f"https://single-developers.up.railway.app/logo?name={ted}").history[1].url
+            fcaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You id ➳ `{ted}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
+            await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=fcaption), reply_markup=STARTBUTTON)
+        except Exception as e:
+            print(str(e))
+elif "hel" in cb_data:
+        try:
+            await cmd.answer(f" Bot Help ")
+            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=hcaption), reply_markup=HELPBUTTON)
+        except Exception as e:
+            print(str(e))
+elif "sta" in cb_data:
+        try:
+            await cmd.answer(f" Bot menu ")
+            await cmd.edit_message_media(InputMediaPhoto(media=f"https://telegra.ph/file/50b455f8692db9c198a70.jpg", caption=scaption), reply_markup=STARTBUTTON)
         except Exception as e:
             print(str(e))
 
