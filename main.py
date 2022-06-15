@@ -356,9 +356,7 @@ async def button(bot: Client, cmd: CallbackQuery):
             photo = get(f"https://single-developers.up.railway.app/logo?name={ted}".replace(' ','%60'))
             ucaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n🌺 You Username ➳ `{ted}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
             await cmd.edit_message_media(InputMediaPhoto(media=photo, caption=ucaption), reply_markup=STARTBUTTON)
-            if os.path.exists(photo):os.remove(photo)
         except Exception as e:
             print(str(e))
-            if os.path.exists(photo):os.remove(photo)
 
 app.run()
