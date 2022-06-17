@@ -1,6 +1,5 @@
 from pyrogram import Client, filters
 from config import Config
-from database import Database
 from pyrogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from requests import get
 import os
@@ -12,7 +11,6 @@ app = Client(
     api_hash = Config.API_HASH
 )
 
-db = Database()
 
 scaption = """
 🌿 Hello Dear {} 
