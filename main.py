@@ -116,8 +116,6 @@ async def status(client, message):
 
 @app.on_message(filters.command("start"))
 async def start(client, message):
-    if not await db.is_user_exist(message.from_user.id):
-        await db.add_user(message.from_user.id)
     await message.reply_chat_action("typing")
     await app.send_photo(message.chat.id,
         photo=f"https://telegra.ph/file/f8032003dc5dc2f542e2d.jpg",
