@@ -132,32 +132,12 @@ async def help(client, message):
         reply_markup=HELPBUTTON,
         reply_to_message_id = message.message_id)
 
-@app.on_message(filters.command("id") & filters.private)
+@app.on_message(filters.text)
 async def id(client, message):
     await message.reply_chat_action("typing")
-    text =f"You Id : {message.from_user.id}"
-    idt = message.from_user.id
-    photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    icaption =f"✌️🏿 You Info Bot 🇱🇰\n\n◇───────────────◇\n\n✍ You Id ➳ `{idt}`\n\n🤘🏿 **Powered By **  : **[Network Tech 🇱🇰](https://t.me/NetworksTech)**\n\n◇───────────────◇️"
-    await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id,
-        photo=photo,
-        caption=icaption.format(message.chat.id),
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🍀 You Id Logo 🍀", url=f"{photo}"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        "🌿 My User Name 🌿", callback_data="usernam"
-                    )
-                ]
-            ]
-          )
-    )
+    text =message.text
+    await message.reply(f"CONNECT [host_port] [protocol][crlf]Host: {text}[crlf]X-Online-Host: {text}[crlf]X-Forward-Host: {text}[crlf]X-Forwarded-For: {text}[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Referer: {text}[crlf]Upgrade: websocket[crlf][crlf]")
+    
 
 @app.on_message(filters.forwarded & filters.private)
 async def fd(client, message):
