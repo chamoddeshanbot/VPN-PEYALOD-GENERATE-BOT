@@ -136,7 +136,7 @@ async def help(client, message):
 async def tex(client, message):
     await message.reply_chat_action("typing")
     text = message.text
-    status = await message.reply("📡 Connection To The **Evozi** ...")
+    status = await message.reply("📡 Connection To The **Evozi** ...",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("10%███░░░░░░░░░░", callback_data="progress_msg")]]))
     await message.reply("📡 Connection To The **Evozi** ....**",
