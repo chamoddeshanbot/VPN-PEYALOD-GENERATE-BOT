@@ -139,7 +139,7 @@ async def tex(client, message):
     status = await message.reply("📡 Connection To The **Evozi** ...",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("10%███░░░░░░░░░░", callback_data="progress_msg")]]))
-    await message.reply("📡 Connection To The **Evozi** ...",
+    await status.edit("📡 Connection To The **Evozi** ...",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("10%███░░░░░░░░░░", callback_data="progress_msg")]]))
     await status.edit("📡 Connection To The **Evozi** ....**",
@@ -175,7 +175,7 @@ async def tex(client, message):
     await status.edit("**⚙ Generating You Payload ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("99%█████████████", callback_data="progress_msg")]]))
-    await status.edit(f"✅ Successfully Generated ✅\n\n🍀 You Host Name : ➳ `{text}`\n\n🌿 You Payload : ➳ `CONNECT [host_port] [protocol][crlf]Host: {text}[crlf]X-Online-Host: {text}[crlf]X-Forward-Host: {text}[crlf]X-Forwarded-For: {text}[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Referer: {text}[crlf]Upgrade: websocket[crlf][crlf]`")
+    await status.edit(f"✅ SUCCESSFULLY GENERATED ✅\n\n🍀 You Host Name : ➳ `{text}`\n\n🌿 You Payload : ➳ `CONNECT [host_port] [protocol][crlf]Host: {text}[crlf]X-Online-Host: {text}[crlf]X-Forward-Host: {text}[crlf]X-Forwarded-For: {text}[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Referer: {text}[crlf]Upgrade: websocket[crlf][crlf]`")
     
 
 @app.on_message(filters.forwarded & filters.private)
