@@ -477,5 +477,7 @@ async def button(bot: Client, cmd: CallbackQuery):
         try:
             await cmd.answer(f"✖️ Close Menu ✖️")
             await cmd.message.delete()
+        except Exception as e:
+            print(str(e))
 
 app.run()
