@@ -133,10 +133,25 @@ async def help(client, message):
         reply_to_message_id = message.message_id)
 
 @app.on_message(filters.text)
-async def id(client, message):
+async def tex(client, message):
     await message.reply_chat_action("typing")
-    text =message.text
-    await message.reply(f"CONNECT [host_port] [protocol][crlf]Host: {text}[crlf]X-Online-Host: {text}[crlf]X-Forward-Host: {text}[crlf]X-Forwarded-For: {text}[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Referer: {text}[crlf]Upgrade: websocket[crlf][crlf]")
+    text = message.text
+    status = await message.reply("**⚙ Generating You Payload ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("10%███░░░░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Payload ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("25%██████░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Payload ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("56%████████░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Payload ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("89%███████████░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Payload ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("99%█████████████", callback_data="progress_msg")]]))
+    await status.edit(f"🍀 You Host Name : ➳ `{text}`\n\n🌿 You Payload : ➳ `CONNECT [host_port] [protocol][crlf]Host: {text}[crlf]X-Online-Host: {text}[crlf]X-Forward-Host: {text}[crlf]X-Forwarded-For: {text}[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Referer: {text}[crlf]Upgrade: websocket[crlf][crlf]`")
     
 
 @app.on_message(filters.forwarded & filters.private)
