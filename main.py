@@ -189,7 +189,7 @@ async def tex(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "🌷 Share In Telegram 🌷", url=f"{share}"
+                        "🌷 Share In Telegram 🌷", url="{share}"
                     )
                 ],
                 [
