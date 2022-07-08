@@ -132,7 +132,7 @@ async def help(client, message):
         reply_markup=HELPBUTTON,
         reply_to_message_id = message.message_id)
 
-@app.on_message(filters.emoji)
+@app.on_message(filters.sticker)
 async def emoji(client, message):
     await message.reply_chat_action("typing")
     await message.reply("🚫 **Erorr** 🚫\n\n⭕️ This Host Name Is unavailable...\n💯 Pleas Send Valid Sni Host Name...")
