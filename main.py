@@ -189,12 +189,12 @@ async def tex(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "🌷 Share In Telegram 🌷", url="{share}"
+                        "🔻 Send Inbox 🔻", callback_data="ib"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
+                        "✖️  Close  ✖️", callback_data="close"
                     )
                 ]
             ]
