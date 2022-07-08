@@ -188,7 +188,7 @@ async def tex(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "🌷 Open In Google 🌷", url=f"https://t.me/share/url?url={payload}"
+                        "🌷 Open In Google 🌷", url=f"tg://msg_url?url={payload}"
                     )
                 ],
                 [
