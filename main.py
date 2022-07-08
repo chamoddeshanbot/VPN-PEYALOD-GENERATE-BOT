@@ -139,6 +139,9 @@ async def tex(client, message):
     status = await message.reply("📡 Connection To The **Evozi** ...",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("10%███░░░░░░░░░░", callback_data="progress_msg")]]))
+    await message.reply("📡 Connection To The **Evozi** ...",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("10%███░░░░░░░░░░", callback_data="progress_msg")]]))
     await status.edit("📡 Connection To The **Evozi** ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("26%███░░░░░░░░░░", callback_data="progress_msg")]]))
@@ -151,6 +154,9 @@ async def tex(client, message):
     await status.edit("📡 Connection To The **Evozi** ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("99%███████████░░", callback_data="progress_msg")]]))
+    await status.edit("**✅ Evozi Connected Successfully ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("✰✰✰✰✰✰✰", callback_data="progress_msg")]]))
     await status.edit("**✅ Evozi Connected Successfully ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✰✰✰✰✰✰✰", callback_data="progress_msg")]]))
